@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="theme-color" content="#0e0f11"/>
 <title>Money Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap" rel="stylesheet"/>
@@ -28,32 +27,9 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; overscroll-behavior: none; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    min-height: 100vh;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  header {
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 20px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .logo {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; padding-bottom: env(safe-area-inset-bottom); }
+  header { background: var(--bg); border-bottom: 1px solid var(--border); padding: 16px 20px 14px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+  .logo { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
   .logo-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
   .header-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
   main { padding: 20px 16px 100px; max-width: 480px; margin: 0 auto; }
@@ -71,62 +47,18 @@
   .input-section-title { font-size: 11px; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 14px; }
   .field-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
   .field { margin-bottom: 12px; }
-  input[type="text"], input[type="number"], select {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    padding: 12px 14px;
-    outline: none;
-    transition: border-color 0.15s;
-    appearance: none;
-    -webkit-appearance: none;
-    height: 48px;
-  }
+  input[type="text"], input[type="number"], select { width: 100%; background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text); font-family: 'Syne', sans-serif; font-size: 16px; padding: 12px 14px; outline: none; transition: border-color 0.15s; appearance: none; -webkit-appearance: none; height: 48px; }
   input[type="text"]::placeholder, input[type="number"]::placeholder { color: var(--muted); }
   input:focus, select:focus { border-color: var(--accent); }
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a7d85' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
-    cursor: pointer;
-  }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a7d85' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
   select option { background: #1e2026; }
   .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .type-btn {
-    height: 48px;
-    border-radius: 12px;
-    border: 1px solid var(--border2);
-    background: var(--surface2);
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
+  .type-btn { height: 48px; border-radius: 12px; border: 1px solid var(--border2); background: var(--surface2); color: var(--muted); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
   .type-btn.active-income { background: var(--green-dim); border-color: var(--green-border); color: var(--green); }
   .type-btn.active-expense { background: var(--red-dim); border-color: var(--red-border); color: var(--red); }
-  .add-btn {
-    width: 100%;
-    background: var(--accent);
-    color: #0e0f11;
-    border: none;
-    border-radius: 12px;
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    height: 52px;
-    cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
-    margin-top: 4px;
-    letter-spacing: -0.01em;
-  }
+  .add-btn { width: 100%; background: var(--accent); color: #0e0f11; border: none; border-radius: 12px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; height: 52px; cursor: pointer; transition: opacity 0.15s, transform 0.1s; margin-top: 4px; letter-spacing: -0.01em; }
   .add-btn:active { opacity: 0.85; transform: scale(0.98); }
+  .add-btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px 16px; margin-bottom: 16px; }
   .panel-title { font-size: 11px; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 14px; }
   .tx-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 8px; }
@@ -153,12 +85,17 @@
   .savings-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 8px; }
   .savings-bar-track { background: var(--surface2); border-radius: 4px; height: 6px; overflow: hidden; }
   .savings-bar-fill { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.4s ease; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 10px 18px; font-size: 13px; font-family: 'DM Mono', monospace; color: var(--text); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 99; white-space: nowrap; }
+  .toast.show { opacity: 1; }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); display: inline-block; margin-left: 6px; }
+  .status-dot.online { background: var(--green); }
+  .status-dot.error { background: var(--red); }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo"><span class="logo-dot"></span>Money Tracker</div>
+  <div class="logo"><span class="logo-dot"></span>Money Tracker <span class="status-dot" id="status-dot"></span></div>
   <div class="header-date" id="hdr-date"></div>
 </header>
 
@@ -195,7 +132,7 @@
         <button class="type-btn" id="btn-expense" onclick="setType('expense')">- Expense</button>
       </div>
     </div>
-    <button class="add-btn" onclick="addEntry()">Add transaction</button>
+    <button class="add-btn" id="add-btn" onclick="addEntry()">Add transaction</button>
   </div>
 
   <div class="panel">
@@ -205,7 +142,7 @@
       <span><span class="legend-sq" style="background:#f87171;"></span>Expenses</span>
     </div>
     <div class="chart-wrap">
-      <canvas id="myChart" role="img" aria-label="Bar chart comparing total income and total expenses">Income vs Expenses</canvas>
+      <canvas id="myChart"></canvas>
     </div>
     <div class="savings-bar-wrap">
       <div class="savings-bar-label">
@@ -220,22 +157,34 @@
 
   <div class="panel">
     <div class="panel-title">Transactions</div>
-    <div id="tx-list"><div class="empty-state">No entries yet.</div></div>
+    <div id="tx-list"><div class="empty-state">Loading...</div></div>
   </div>
 </main>
 
+<div class="toast" id="toast"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-  let entries = JSON.parse(localStorage.getItem('mt-entries') || '[]');
+  const SUPABASE_URL = 'https://yyhiwyotmdlpwenppcuy.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_8U62aiKv2kmazIywDdRx-g_jiQ7hr0J';
+  const HEADERS = { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY };
+
+  let entries = [];
   let selectedType = 'income';
   let chart;
 
   document.getElementById('hdr-date').textContent = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
 
-  function setType(t) {
-    selectedType = t;
-    document.getElementById('btn-income').className = 'type-btn' + (t === 'income' ? ' active-income' : '');
-    document.getElementById('btn-expense').className = 'type-btn' + (t === 'expense' ? ' active-expense' : '');
+  function setStatus(s) {
+    const d = document.getElementById('status-dot');
+    d.className = 'status-dot ' + s;
+  }
+
+  function showToast(msg, duration = 2500) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
   }
 
   function fmt(n) {
@@ -253,28 +202,71 @@
     return d.toLocaleDateString('en-GB', { day:'numeric', month:'short' }) + ' ' + d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
   }
 
-  function save() { localStorage.setItem('mt-entries', JSON.stringify(entries)); }
+  function setType(t) {
+    selectedType = t;
+    document.getElementById('btn-income').className = 'type-btn' + (t === 'income' ? ' active-income' : '');
+    document.getElementById('btn-expense').className = 'type-btn' + (t === 'expense' ? ' active-expense' : '');
+  }
 
-  function addEntry() {
+  async function loadEntries() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/transactions?order=created_at.desc`, { headers: HEADERS });
+      if (!res.ok) throw new Error('Failed to load');
+      entries = await res.json();
+      setStatus('online');
+      render();
+    } catch (e) {
+      setStatus('error');
+      showToast('⚠️ Could not load data. Check Supabase setup.');
+      document.getElementById('tx-list').innerHTML = '<div class="empty-state">Could not connect to database.</div>';
+    }
+  }
+
+  async function addEntry() {
     const desc = document.getElementById('inp-desc').value.trim();
     const amount = parseFloat(document.getElementById('inp-amount').value);
     if (!desc || isNaN(amount) || amount <= 0) {
       document.getElementById(!desc ? 'inp-desc' : 'inp-amount').focus();
       return;
     }
-    entries.push({ desc, amount, type: selectedType, id: Date.now() });
-    document.getElementById('inp-desc').value = '';
-    document.getElementById('inp-amount').value = '';
-    document.getElementById('inp-desc').focus();
-    save();
-    render();
+    const btn = document.getElementById('add-btn');
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/transactions`, {
+        method: 'POST',
+        headers: { ...HEADERS, 'Prefer': 'return=representation' },
+        body: JSON.stringify({ description: desc, amount, type: selectedType })
+      });
+      if (!res.ok) throw new Error('Failed to save');
+      const [newEntry] = await res.json();
+      entries.unshift(newEntry);
+      document.getElementById('inp-desc').value = '';
+      document.getElementById('inp-amount').value = '';
+      document.getElementById('inp-desc').focus();
+      showToast('✅ Transaction saved!');
+      render();
+    } catch (e) {
+      showToast('❌ Failed to save. Try again.');
+    }
+    btn.disabled = false;
+    btn.textContent = 'Add transaction';
   }
 
-  function deleteEntry(id) {
+  async function deleteEntry(id) {
     if (!confirm('Delete this entry?')) return;
-    entries = entries.filter(e => e.id !== id);
-    save();
-    render();
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/transactions?id=eq.${id}`, {
+        method: 'DELETE',
+        headers: HEADERS
+      });
+      if (!res.ok) throw new Error();
+      entries = entries.filter(e => e.id !== id);
+      showToast('🗑️ Deleted');
+      render();
+    } catch (e) {
+      showToast('❌ Failed to delete.');
+    }
   }
 
   function render() {
@@ -296,18 +288,18 @@
     if (entries.length === 0) {
       list.innerHTML = '<div class="empty-state">No entries yet.</div>';
     } else {
-      list.innerHTML = [...entries].reverse().map(e => `
+      list.innerHTML = entries.map(e => `
         <div class="tx-item">
           <div class="tx-left">
             <div class="tx-icon ${e.type}">${e.type === 'income' ? '+' : '-'}</div>
             <div class="tx-info">
-              <div class="tx-desc">${e.desc}</div>
-              <div class="tx-time">${timeLabel(e.id)}</div>
+              <div class="tx-desc">${e.description}</div>
+              <div class="tx-time">${timeLabel(e.created_at)}</div>
             </div>
           </div>
           <div class="tx-right">
             <span class="tx-amount ${e.type}">${e.type === 'income' ? '+' : '-'}${fmtFull(e.amount)}</span>
-            <button class="del-btn" onclick="deleteEntry(${e.id})">×</button>
+            <button class="del-btn" onclick="deleteEntry('${e.id}')">×</button>
           </div>
         </div>`).join('');
     }
@@ -336,17 +328,8 @@
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: {
-            ticks: { color: '#7a7d85', font: { family: 'DM Mono', size: 11 } },
-            grid: { display: false },
-            border: { color: 'rgba(255,255,255,0.07)' }
-          },
-          y: {
-            ticks: { color: '#7a7d85', font: { family: 'DM Mono', size: 10 }, callback: v => '৳' + (v >= 1000 ? (v/1000).toFixed(0)+'K' : v) },
-            grid: { color: 'rgba(255,255,255,0.05)' },
-            border: { display: false },
-            beginAtZero: true
-          }
+          x: { ticks: { color: '#7a7d85', font: { family: 'DM Mono', size: 11 } }, grid: { display: false }, border: { color: 'rgba(255,255,255,0.07)' } },
+          y: { ticks: { color: '#7a7d85', font: { family: 'DM Mono', size: 10 }, callback: v => '৳' + (v >= 1000 ? (v/1000).toFixed(0)+'K' : v) }, grid: { color: 'rgba(255,255,255,0.05)' }, border: { display: false }, beginAtZero: true }
         }
       }
     });
@@ -355,7 +338,7 @@
   document.getElementById('inp-desc').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('inp-amount').focus(); });
   document.getElementById('inp-amount').addEventListener('keydown', e => { if (e.key === 'Enter') addEntry(); });
 
-  render();
+  loadEntries();
 </script>
 </body>
 </html>
