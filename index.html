@@ -197,10 +197,15 @@
     return '৳' + Math.abs(n).toLocaleString('en-IN', { maximumFractionDigits: 0 });
   }
 
-  function timeLabel(ts) {
-    const d = new Date(ts);
-    return d.toLocaleDateString('en-GB', { day:'numeric', month:'short', timeZone:'Asia/Dhaka' }) + ' ' + d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', timeZone:'Asia/Dhaka' });
-  }
+ function timeLabel(ts) {
+  const d = new Date(ts);
+
+  // convert to Bangladesh time manually
+  const local = new Date(d.getTime() + (6 * 60 * 60 * 1000));
+
+  return local.toLocaleDateString('en-GB', { day:'numeric', month:'short' }) 
+    + ' ' + local.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+}
 
   function setType(t) {
     selectedType = t;
