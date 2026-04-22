@@ -197,9 +197,9 @@
     return '৳' + Math.abs(n).toLocaleString('en-IN', { maximumFractionDigits: 0 });
   }
 
- function timeLabel(ts) {
+function timeLabel(ts) {
   const d = new Date(ts);
-  return d.toLocaleString('en-GB', {
+  return d.toLocaleString('en-BD', {
     day: 'numeric',
     month: 'short',
     hour: '2-digit',
