@@ -350,27 +350,51 @@
   async function addEntry() {
     const desc = document.getElementById('inp-desc').value.trim();
     const amount = parseFloat(document.getElementById('inp-amount').value);
-    if (!desc || isNaN(amount) || amount <= 0) { document.getElementById(!desc?'inp-desc':'inp-amount').focus(); return; }
+    
+    if (!desc || isNaN(amount) || amount <= 0) { 
+        document.getElementById(!desc?'inp-desc':'inp-amount').focus(); 
+        return; 
+    }
+    
     const btn = document.getElementById('add-btn');
-    btn.disabled = true; btn.textContent = 'Saving...';
+    btn.disabled = true; 
+    btn.textContent = 'Saving...';
+
     try {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/transactions`, {
         method: 'POST',
         headers: { ...authH(), 'Prefer': 'return=representation' },
-        body: JSON.stringify({ description: desc, amount, type: selectedType })
+        // UPDATED LINE BELOW: Added user_id
+        body: JSON.stringify({ 
+            description: desc, 
+            amount: amount, 
+            type: selectedType,
+            user_id: currentSession.user.id // This is required for RLS!
+        })
       });
-      if (!res.ok) throw new Error();
+
+      if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.message || 'Failed to save');
+      }
+
       const [newEntry] = await res.json();
       entries.unshift(newEntry);
+      
+      // Clear inputs
       document.getElementById('inp-desc').value = '';
       document.getElementById('inp-amount').value = '';
       document.getElementById('inp-desc').focus();
+      
       showToast('✅ Transaction saved!');
       render();
-    } catch(e) { showToast('❌ Failed to save. Try again.'); }
-    btn.disabled = false; btn.textContent = 'Add transaction';
-  }
-
+    } catch(e) { 
+      console.error(e);
+      showToast('❌ ' + e.message); 
+    }
+    btn.disabled = false; 
+    btn.textContent = 'Add transaction';
+}
   async function deleteEntry(id) {
     if (!confirm('Delete this entry?')) return;
     try {
